@@ -2713,6 +2713,7 @@ export default class PopShellExtension extends Extension {
         }
 
         ext.keybindings.enable(ext.keybindings.global).enable(ext.keybindings.window_focus);
+        ext.tiler.enable_keybindings(ext);
 
         if (ext.settings.tile_by_default()) {
             ext.auto_tile_on();
@@ -2738,6 +2739,7 @@ export default class PopShellExtension extends Extension {
             layoutManager.removeChrome(ext.overlay);
 
             ext.keybindings.disable(ext.keybindings.global).disable(ext.keybindings.window_focus);
+            ext.tiler.disable_keybindings(ext);
 
             if (ext.auto_tiler) {
                 ext.auto_tiler.destroy(ext);
