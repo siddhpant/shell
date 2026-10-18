@@ -17,10 +17,8 @@ import Shell from 'gi://Shell';
 import St from 'gi://St';
 import GLib from 'gi://GLib';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import { PACKAGE_VERSION } from 'resource:///org/gnome/shell/misc/config.js';
 
 const { OnceCell } = once_cell;
-const GNOME_VERSION = Number.parseInt(PACKAGE_VERSION, 10);
 
 export var window_tracker = Shell.WindowTracker.get_default();
 
@@ -281,22 +279,6 @@ export class ShellWindow {
         return this.meta.maximized_horizontally || this.meta.maximized_vertically;
     }
 
-    maximize(): void {
-        if (GNOME_VERSION >= 49) {
-            this.meta.maximize();
-        } else {
-            this.meta.maximize(Meta.MaximizeFlags.BOTH);
-        }
-    }
-
-    unmaximize(): void {
-        if (GNOME_VERSION >= 49) {
-            this.meta.unmaximize();
-        } else {
-            this.meta.unmaximize(Meta.MaximizeFlags.BOTH);
-        }
-    }
-
     /**
      * Window is maximized, 0 gapped or smart gapped
      */
@@ -391,7 +373,7 @@ export class ShellWindow {
 
         if (actor) {
             if (this.is_maximized()) {
-                this.unmaximize();
+                meta.unmaximize();
             }
             actor.remove_all_transitions();
 
