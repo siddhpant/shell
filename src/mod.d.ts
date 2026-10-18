@@ -306,8 +306,8 @@ declare namespace Meta {
         is_skip_taskbar(): boolean;
         make_above(): void;
         make_fullscreen(): void;
-        maximize(): void;
-        unmaximize(): void;
+        maximize(flags?: MaximizeFlags): void;
+        unmaximize(flags?: MaximizeFlags): void;
         unminimize(): void;
         set_maximize_flags(flags: MaximizeFlags): void;
         set_unmaximize_flags(flags: MaximizeFlags): void;
